@@ -5,12 +5,12 @@ Azure Data Lake Storage Gen2 REST API provides a file system interface for big d
 
 ## Tags:
 
- - Data Lake, Big Data, Analytics, Hierarchical Storage
+ - Analytics, Big Data, Data Lake, Hierarchical Storage
 
 ## Timestamps
 
-- **Created:** 2026-03-13
-- **Modified:** 2026-03-13
+- **Created:** 2024-01-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
@@ -18,6 +18,12 @@ Azure Data Lake Storage Gen2 REST API provides a file system interface for big d
 Azure Data Lake Storage Gen2 REST API provides a file system interface for big data analytics workloads on Azure Blob Storage. It supports creating file systems, managing directories and files with hierarchical namespace, setting ACLs, and integrating with analytics engines.
 
 **Human URL:** [https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2](https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2)
+
+**Base URL:** https://{account}.dfs.core.windows.net/
+
+#### Tags:
+
+ - Analytics, Big Data, Data Lake, Hierarchical Storage
 
 #### Properties
 
