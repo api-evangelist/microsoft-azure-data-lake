@@ -30,6 +30,8 @@ apis:
       - Data Lake
       - Hierarchical Storage
     properties:
+      - url: openapi/microsoft-azure-data-lake-openapi.yml
+        type: OpenAPI
       - type: Documentation
         url: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
 common:
