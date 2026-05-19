@@ -1,0 +1,255 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Data Lake Storage Gen2 REST API — Filesystems
+  description: 'Azure Data Lake Storage Gen2 REST API — Filesystems. 7 operations. Lead operation: Azure Data Lake Storage
+    Gen2 REST API List. Self-contained Naftiko capability covering one Microsoft Azure Data Lake business surface.'
+  tags:
+  - Microsoft Azure Data Lake
+  - Filesystems
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_DATA_LAKE_API_KEY: MICROSOFT_AZURE_DATA_LAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: microsoft-azure-data-lake-filesystems
+    baseUri: https://{account}.dfs.core.windows.net
+    description: Azure Data Lake Storage Gen2 REST API — Filesystems business capability. Self-contained, no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: listcontainers
+        method: GET
+        description: Azure Data Lake Storage Gen2 REST API List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: comp
+          in: query
+          type: string
+          required: true
+    - name: container
+      path: /{container}
+      operations:
+      - name: createcontainer
+        method: PUT
+        description: Azure Data Lake Storage Gen2 REST API Create
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getcontainerproperties
+        method: GET
+        description: Azure Data Lake Storage Gen2 REST API Get properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecontainer
+        method: DELETE
+        description: Azure Data Lake Storage Gen2 REST API Delete
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: container-path
+      path: /{container}/{path}
+      operations:
+      - name: putitem
+        method: PUT
+        description: Azure Data Lake Storage Gen2 REST API Put item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: getitem
+        method: GET
+        description: Azure Data Lake Storage Gen2 REST API Get item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteitem
+        method: DELETE
+        description: Azure Data Lake Storage Gen2 REST API Delete item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.MICROSOFT_AZURE_DATA_LAKE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: microsoft-azure-data-lake-filesystems-rest
+    port: 8080
+    description: REST adapter for Azure Data Lake Storage Gen2 REST API — Filesystems. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: GET
+        name: listcontainers
+        description: Azure Data Lake Storage Gen2 REST API List
+        call: microsoft-azure-data-lake-filesystems.listcontainers
+        with:
+          comp: rest.comp
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{container}
+      name: container
+      description: REST surface for container.
+      operations:
+      - method: PUT
+        name: createcontainer
+        description: Azure Data Lake Storage Gen2 REST API Create
+        call: microsoft-azure-data-lake-filesystems.createcontainer
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getcontainerproperties
+        description: Azure Data Lake Storage Gen2 REST API Get properties
+        call: microsoft-azure-data-lake-filesystems.getcontainerproperties
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecontainer
+        description: Azure Data Lake Storage Gen2 REST API Delete
+        call: microsoft-azure-data-lake-filesystems.deletecontainer
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{container}/{path}
+      name: container-path
+      description: REST surface for container-path.
+      operations:
+      - method: PUT
+        name: putitem
+        description: Azure Data Lake Storage Gen2 REST API Put item
+        call: microsoft-azure-data-lake-filesystems.putitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getitem
+        description: Azure Data Lake Storage Gen2 REST API Get item
+        call: microsoft-azure-data-lake-filesystems.getitem
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteitem
+        description: Azure Data Lake Storage Gen2 REST API Delete item
+        call: microsoft-azure-data-lake-filesystems.deleteitem
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: microsoft-azure-data-lake-filesystems-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Data Lake Storage Gen2 REST API — Filesystems. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: azure-data-lake-storage-gen2
+      description: Azure Data Lake Storage Gen2 REST API List
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.listcontainers
+      with:
+        comp: tools.comp
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-data-lake-storage-gen2-2
+      description: Azure Data Lake Storage Gen2 REST API Create
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.createcontainer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-data-lake-storage-gen2-3
+      description: Azure Data Lake Storage Gen2 REST API Get properties
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.getcontainerproperties
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-data-lake-storage-gen2-4
+      description: Azure Data Lake Storage Gen2 REST API Delete
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.deletecontainer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-data-lake-storage-gen2-5
+      description: Azure Data Lake Storage Gen2 REST API Put item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.putitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-data-lake-storage-gen2-6
+      description: Azure Data Lake Storage Gen2 REST API Get item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.getitem
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-data-lake-storage-gen2-7
+      description: Azure Data Lake Storage Gen2 REST API Delete item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: microsoft-azure-data-lake-filesystems.deleteitem
+      outputParameters:
+      - type: object
+        mapping: $.
