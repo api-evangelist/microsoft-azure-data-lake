@@ -33,6 +33,10 @@ apis:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
 common:
+  - type: DomainSecurity
+    url: security/microsoft-azure-data-lake-domain-security.yml
+  - type: Authentication
+    url: authentication/microsoft-azure-data-lake-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/Azure
   - type: Portal
@@ -48,3 +52,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+  - url: https://azure.microsoft.com/en-us/blog/azure-data-lake-storage-gen2-preview-more-features-more-performance-better-availability/
+    type: Blog
