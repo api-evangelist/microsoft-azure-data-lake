@@ -1,26 +1,20 @@
 openapi: 3.1.0
 info:
-  title: Azure Data Lake Storage Gen2 REST API
-  description: Azure Data Lake Storage Gen2 REST API supports filesystem and path operations on hierarchical
-    namespace storage accounts. Authentication is via Shared Key, SAS, or Azure AD bearer tokens.
+  title: Azure Data Lake Storage Gen2 REST Filesystems API
+  description: Azure Data Lake Storage Gen2 REST API supports filesystem and path operations on hierarchical namespace storage accounts. Authentication is via Shared Key, SAS, or Azure AD bearer tokens.
   version: '2024-05-04'
-externalDocs:
-  description: Azure Data Lake Storage Gen2 REST API Documentation
-  url: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
 servers:
 - url: https://{account}.dfs.core.windows.net
   variables:
     account:
       default: myaccount
       description: Storage account name
-tags:
-- name: Service
-  description: Account-level operations
-- name: Filesystems
-  description: Filesystems operations
 security:
 - sharedKey: []
 - sasToken: []
+tags:
+- name: Filesystems
+  description: Filesystems operations
 paths:
   /:
     get:
@@ -135,5 +129,8 @@ components:
       in: query
       name: sig
       description: Shared Access Signature token
+externalDocs:
+  description: Azure Data Lake Storage Gen2 REST API Documentation
+  url: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
 x-generated-from: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
 x-generated-by: claude-crawl-2026-05-08
