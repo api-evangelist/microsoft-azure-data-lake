@@ -3,7 +3,20 @@ description: >-
   Azure Data Lake Storage Gen2 REST API provides a file system interface for big data analytics workloads on Azure Blob
   Storage. It supports creating file systems, managing directories and files with hierarchical namespace, setting ACLs,
   and integrating with analytics engines.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/microsoft-azure-data-lake.png
 tags:
   - Analytics
   - Big Data
@@ -14,24 +27,18 @@ modified: '2026-05-19'
 specificationVersion: '0.18'
 url: https://raw.githubusercontent.com/api-evangelist/microsoft-azure-data-lake/refs/heads/main/apis.yml
 apis:
-  - name: Azure Data Lake Storage REST API
-    description: >-
-      Azure Data Lake Storage Gen2 REST API provides a file system interface for big data analytics workloads on Azure
-      Blob Storage. It supports creating file systems, managing directories and files with hierarchical namespace,
-      setting ACLs, and integrating with analytics engines.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
-    baseURL: https://{account}.dfs.core.windows.net/
-    tags:
-      - Analytics
-      - Big Data
-      - Data Lake
-      - Hierarchical Storage
-    properties:
-      - url: openapi/microsoft-azure-data-lake-openapi.yml
-        type: OpenAPI
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
+- aid: microsoft-azure-data-lake:microsoft-azure-data-lake-filesystems-api
+  name: Azure Data Lake Storage Filesystems API
+  description: Filesystems operations
+  humanURL: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
+  baseURL: https://{account}.dfs.core.windows.net/
+  tags:
+  - Filesystems
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-data-lake-filesystems-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
 common:
   - type: AgenticAccess
     url: agentic-access/microsoft-azure-data-lake-agentic-access.yml
