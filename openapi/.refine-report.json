@@ -1,0 +1,14 @@
+{
+  "provider": "microsoft-azure-data-lake",
+  "sources": [
+    "microsoft-azure-data-lake-filesystems-api-openapi.yml"
+  ],
+  "outputs": [
+    "microsoft-azure-data-lake-filesystems-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
