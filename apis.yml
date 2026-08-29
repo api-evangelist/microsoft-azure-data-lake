@@ -3,6 +3,18 @@ description: >-
   Azure Data Lake Storage Gen2 REST API provides a file system interface for big data analytics workloads on Azure Blob
   Storage. It supports creating file systems, managing directories and files with hierarchical namespace, setting ACLs,
   and integrating with analytics engines.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
