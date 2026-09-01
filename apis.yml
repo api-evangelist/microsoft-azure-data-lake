@@ -45,7 +45,7 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/storageservices/data-lake-storage-gen2
   baseURL: https://{account}.dfs.core.windows.net/
   tags:
-  - Filesystems
+  - Filesystem
   tags_raw:
   - Filesystems
   properties:
